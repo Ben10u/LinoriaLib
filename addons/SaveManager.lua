@@ -258,6 +258,15 @@ local SaveManager = {} do
 			self.Library:Notify(string.format('Set %q to auto load', name))
 		end)
 
+		section:AddButton('Disable autoload', function()
+			local file = self.Folder .. '/settings/autoload.txt'
+			if isfile(file) then
+				delfile(file)
+				SaveManager.AutoloadLabel:SetText('Current autoload config: none')
+				self.Library:Notify('Autoload config disable')
+			end
+		end)
+
 		SaveManager.AutoloadLabel = section:AddLabel('Current autoload config: none', true)
 
 		if isfile(self.Folder .. '/settings/autoload.txt') then
